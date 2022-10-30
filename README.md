@@ -19,3 +19,5 @@ result.py---Include all result print functions and plot functions.
 reward_GA.py---Define the reward of GA. This reward is recalled by genetic_algorithm.py.
 
 reward_HQM.py---Define the reward of HQM. This reward is recalled by HQM.py.
+
+The result folders provides a sample result for a large problem instance for reference (the number of parking space = 10, the number of customer locations within each parking space = 20).
