@@ -19,9 +19,9 @@ if __name__ == "__main__":
 
     ###HQM_BTD
     policy = 0 #policy 0-locker back to depot if time windows not satisfy， 1-wait in the current parking space umtil time windows are met
-    filepath0 = './result_0/'
-    filepath1 = './result_0_ga/'
-    filepath_0_all = './result_0_all/'
+    filepath0 = './Result of HQM-BTD/'
+    filepath1 = './Result of GA-BTD/'
+    filepath_0_all = './Result of convergence and reward acquisition/'
     data, s_points, customer_points, max_radius, mean_window, mean_stop = getData(radius_limit, wait_limit,
                                                                                   stop_limit, capacity,
                                                                                   filepath0, saveflag=1)
@@ -50,9 +50,9 @@ if __name__ == "__main__":
 
     ###HQM_HCPS
     policy = 1 #policy 0-locker back to depot if time windows not satisfy， 1-wait in the current parking space umtil time windows are met
-    filepath2 = './result_1/'
-    filepath3 = './result_1_ga/'
-    filepath_all = './result_all/'
+    filepath2 = './Result of HQM-HCPS/'
+    filepath3 = './Result of GA-HCPS/'
+    filepath_all = './Result of convergence and reward acquisition/'
     
     bestfit_1_rl, bestx_1_rl, Qnorm_1, initial_result_q = Qlearning(ncar=max_car, npoints=len(s_points), maxspeed = maxspeed, capacity = capacity, gene=gene, popsize=popsize, policy=policy, data=data)
     reward2, total_dispatch2, total_distance2, task2, path2, route2, distance2, load2, arrive2, leave2, late2, stay2 = getReward1(
