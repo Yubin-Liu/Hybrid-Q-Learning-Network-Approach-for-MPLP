@@ -47,14 +47,14 @@ def color(value):
 def getColor(number):
     return list(map(lambda x: color(tuple(x)), ncolors(number)))
 
-# 字典转Dataframe
+# Dictionary to Dataframe
 def dict2df(dic, col):
     k = list(dic.keys())
     v = list(dic.values())
     df = pd.DataFrame(list(zip(k, v)), columns=col)
     return df
 
-#固定小数点个数
+# Fix decimal
 def fixDecimal(dic, n):
     new_dict = {}
     for i in dic:
@@ -75,12 +75,12 @@ def drawconv(filepath, bestfit, Qnorm):
     plt.plot(t, plt_fit)
     plt.xlabel('Number of iteration')
     plt.ylabel('Reward')
-    plt.savefig(filepath+'Convergence_of_reward.png')
+    plt.savefig(filepath+'Convergence_of_reward.eps', format = 'eps')
     plt.figure()
     plt.plot(t, plt_norm)
     plt.xlabel('Number of iteration')
     plt.ylabel('Error of Q-Value')
-    plt.savefig(filepath + 'Convergence_of_Q_value.png')
+    plt.savefig(filepath + 'Convergence_of_Q_value.eps', format = 'eps')
     
 def drawallcon(filepath, gene, bestfit_0_ga, bestfit_1_ga, Qnorm_0, Qnorm_1):
     t = np.arange(0, gene)
@@ -99,10 +99,10 @@ def drawallcon(filepath, gene, bestfit_0_ga, bestfit_1_ga, Qnorm_0, Qnorm_1):
 
     fig, ax = plt.subplots(2, 1)
     ax[0].set_ylabel('Error of Q-Value', color = 'tab:blue')
-    ax[0].plot(t, plt_norm0, linewidth = '1.5',label = 'HQM-Policy1', color = '#0343df', linestyle = '-')
+    ax[0].plot(t, plt_norm0, linewidth = '1.5',label = 'HQM-btd', color = '#0343df', linestyle = '-')
     ax2 = ax[0].twinx()
-    ax2.plot(t, plt_fit_0_ga, linewidth='1.5', label='GA-Policy1', color='#e50000', linestyle='-')
-    ax2.set_ylabel('Value of f(X,Y,Z)', color='tab:red')
+    ax2.plot(t, plt_fit_0_ga, linewidth='1.5', label='GA-BTD', color='#e50000', linestyle='-')
+    ax2.set_ylabel('Value of Equation (9)', color='tab:red')
     ax[0].legend(loc = 'upper right')
     ax2.legend(loc = 'center right')
     ax[0].tick_params(axis = 'y', labelcolor = 'tab:blue')
@@ -111,9 +111,9 @@ def drawallcon(filepath, gene, bestfit_0_ga, bestfit_1_ga, Qnorm_0, Qnorm_1):
  
     ax[1].set_xlabel('Number of iteration')
     ax[1].set_ylabel('Error of Q-Value', color = 'tab:blue')
-    ax[1].plot(t, plt_norm1, linewidth='1.5', label='HQM-Policy2', color='#0343df', linestyle='-')
+    ax[1].plot(t, plt_norm1, linewidth='1.5', label='HQM-HCPS', color='#0343df', linestyle='-')
     ax3 = ax[1].twinx()
-    ax3.plot(t, plt_fit_1_ga, linewidth='1.5', label='GA-Policy2', color='#e50000', linestyle='-')
+    ax3.plot(t, plt_fit_1_ga, linewidth='1.5', label='GA-HCPS', color='#e50000', linestyle='-')
     ax3.set_ylabel('Value of f(X,Y,Z)', color='tab:red')
     ax[1].legend(loc = 'upper right')
     ax3.legend(loc = 'center right')
@@ -121,7 +121,7 @@ def drawallcon(filepath, gene, bestfit_0_ga, bestfit_1_ga, Qnorm_0, Qnorm_1):
     ax3.tick_params(axis='y', labelcolor='tab:red')  
     plt.tight_layout()
 
-    fig.savefig(filepath+'Convergence_comparision.png')
+    fig.savefig(filepath+'Convergence_comparision.eps', format = 'eps')
 
 def drawallrwd(filepath, gene, bestfit_0_ga, bestfit_1_ga, bestfit_0_rl, bestfit_1_rl):
     
@@ -141,9 +141,9 @@ def drawallrwd(filepath, gene, bestfit_0_ga, bestfit_1_ga, bestfit_0_rl, bestfit
 
     fig, ax = plt.subplots(2,1)
     ax[0].set_ylabel('Reward', color = 'tab:blue')
-    ax[0].plot(t, plt_fit_0_rl, linewidth = '1.5',label = 'HQM-Policy1', color = '#0343df', linestyle = '-')
+    ax[0].plot(t, plt_fit_0_rl, linewidth = '1.5',label = 'HQM-BTD', color = '#0343df', linestyle = '-')
     ax2 = ax[0].twinx()
-    ax2.plot(t, plt_fit_0_ga, linewidth='1.5', label='GA-Policy1', color='#e50000', linestyle='-')
+    ax2.plot(t, plt_fit_0_ga, linewidth='1.5', label='GA-BTD', color='#e50000', linestyle='-')
     ax2.set_ylabel('Reward(1/f(X,Y,Z)', color='tab:red')
     ax[0].legend(loc = 'lower right')
     ax2.legend(loc = 'center right')
@@ -153,9 +153,9 @@ def drawallrwd(filepath, gene, bestfit_0_ga, bestfit_1_ga, bestfit_0_rl, bestfit
  
     ax[1].set_xlabel('Number of iteration')
     ax[1].set_ylabel('Reward', color = 'tab:blue')
-    ax[1].plot(t, plt_fit_1_rl, linewidth='1.5', label='HQM-Policy2', color='#0343df', linestyle='-')
+    ax[1].plot(t, plt_fit_1_rl, linewidth='1.5', label='HQM-HCPS', color='#0343df', linestyle='-')
     ax3 = ax[1].twinx()
-    ax3.plot(t, plt_fit_1_ga, linewidth='1.5', label='GA-Policy2', color='#e50000', linestyle='-')
+    ax3.plot(t, plt_fit_1_ga, linewidth='1.5', label='GA-HCPS', color='#e50000', linestyle='-')
     ax3.set_ylabel('Reward(1/f(X,Y,Z)', color='tab:red')
     ax[1].legend(loc = 'lower right')
     ax3.legend(loc = 'center right')
@@ -163,7 +163,7 @@ def drawallrwd(filepath, gene, bestfit_0_ga, bestfit_1_ga, bestfit_0_rl, bestfit
     ax3.tick_params(axis='y', labelcolor='tab:red')  
     plt.tight_layout()
      
-    fig.savefig(filepath+'Reward_comparision.png')
+    fig.savefig(filepath+'Reward_comparision.eps', format = 'eps')
     
     
 def drawallrwd2(filepath, gene, bestfit_0_ga, bestfit_1_ga, bestfit_0_rl, bestfit_1_rl):
@@ -185,20 +185,20 @@ def drawallrwd2(filepath, gene, bestfit_0_ga, bestfit_1_ga, bestfit_0_rl, bestfi
 
     fig, ax = plt.subplots(2,1)
     ax[0].set_ylabel('Reward')
-    ax[0].plot(t, plt_fit_0_rl, linewidth = '1.5',label = 'HQM-Policy1', color = '#0343df', linestyle = '-')
-    ax[0].plot(t, plt_fit_0_ga, linewidth='1.5', label='GA-Policy1', color='#e50000', linestyle='-')
+    ax[0].plot(t, plt_fit_0_rl, linewidth = '1.5',label = 'HQM-BTD', color = '#0343df', linestyle = '-')
+    ax[0].plot(t, plt_fit_0_ga, linewidth='1.5', label='GA-BTD', color='#e50000', linestyle='-')
     ax[0].legend(loc = 'lower right')
 
  
  
     ax[1].set_xlabel('Number of iteration')
     ax[1].set_ylabel('Reward')
-    ax[1].plot(t, plt_fit_1_rl, linewidth='1.5', label='HQM-Policy2', color='#0343df', linestyle='-')
-    ax[1].plot(t, plt_fit_1_ga, linewidth='1.5', label='GA-Policy2', color='#e50000', linestyle='-')
+    ax[1].plot(t, plt_fit_1_rl, linewidth='1.5', label='HQM-HCPS', color='#0343df', linestyle='-')
+    ax[1].plot(t, plt_fit_1_ga, linewidth='1.5', label='GA-HCPS', color='#e50000', linestyle='-')
     ax[1].legend(loc = 'lower right')
     plt.tight_layout()
      
-    fig.savefig(filepath+'Reward_comparision_1.png')
+    fig.savefig(filepath+'Reward_comparision_1.eps', format = 'eps')
 
 
 
